@@ -1,0 +1,89 @@
+🔷 What are Props in React?
+In React.js, props (short for properties) are used to pass data from a parent component to a child component. They are like function arguments for components and are read-only—meaning a component cannot modify its own props.
+
+🔹 Why Use Props?
+Props allow you to make components reusable and dynamic by customizing their content or behavior based on the data passed to them.
+
+🔹 Basic Example
+Parent Component:
+import React from 'react';
+import Greeting from './Greeting';
+
+function App() {
+  return (
+    <div>
+      <Greeting name="Vaibhav" />
+    </div>
+  );
+}
+
+
+Child Component (Greeting.js):
+import React from 'react';
+
+function Greeting(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+
+export default Greeting;
+
+
+🔹 Destructuring Props (Clean Code)
+Instead of props.name, you can destructure the props:
+
+function Greeting({ name }) {
+  return <h1>Hello, {name}!</h1>;
+}
+
+🔹 Props with Different Data Types
+You can pass:
+
+Strings: <Component text="hello" />
+
+Numbers: <Component age={21} />
+
+Booleans: <Component isActive={true} />
+
+Arrays: <Component items={[1, 2, 3]} />
+
+Objects: <Component user={{ name: 'John', age: 30 }} />
+
+Functions (for event handling): <Component onClick={handleClick} />
+
+
+🔹 Props Are Immutable
+Props cannot be changed inside the child component. If you need to manage or change values, use state (useState) inside the child or pass a function from the parent to modify state there.
+
+
+🔹 Example: Passing a Callback Function via Props
+Parent:
+function App() {
+  const sayHello = () => alert('Hello from parent!');
+  return <Child onGreet={sayHello} />;
+}
+
+Child:
+function Child({ onGreet }) {
+  return <button onClick={onGreet}>Greet</button>;
+}
+
+
+ek se jayada props bhi bhej sakte haii 
+Example-> newArray={1,2,3}
+return(
+    <>
+<Card username="Vaibhav" obj1={newArray}/>
+
+</>
+
+In Card.jsx
+function Card(props){
+
+}
+
+Hum default value bhi de sakte haii suppose koi props dena bhul gya kisi naye element mei jaha dena tha tho wo empty show karega UI pe tho hum default de sakte hai.
+Ex-:
+function Card({username="Suiiii"}){
+
+}
+So here if someone forgets to send any value then it will show Suiiii if they will send value then no problem that value will be showned.

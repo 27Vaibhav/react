@@ -1,0 +1,140 @@
+So we can our own custom react basically we had an index.html file and then the  main file. We created a index file and an custom.js which will act as our main file
+
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom React</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="./custom.js"></script>
+</body>
+</html>
+
+->So isme humare pass kya thareact mei ek id root tha usme injection ho rha tha tho ek div banaya id root aur uske baad script src karke inject kara liya customjs
+
+
+custom.js
+
+function customRender(reactElement, container){
+    /*
+    const domElement = document.createElement(reactElement.type)
+    domElement.innerHTML = reactElement.children
+    domElement.setAttribute('href', reactElement.props.href)
+    domElement.setAttribute('target', reactElement.props.target)
+
+    container.appendChild(domElement)
+    */
+
+    const domElement = document.createElement(reactElement.type)
+    domElement.innerHTML = reactElement.children
+    for (const prop in reactElement.props) {
+        if (prop === 'children') continue;
+        domElement.setAttribute(prop, reactElement.props[prop])
+    }
+    container.appendChild(domElement)
+}
+
+
+const reactElement={
+    type:a,
+    props:{
+        href:'https://google.com',
+        target: '_blank'
+    },
+    children: 'Click me to visit google'
+}
+const mainContainer=document.querySelector('#root')
+
+customRender(reactElement, mainContainer)
+
+-> THo yaha pe humne kya kiya basically normal react mei kya hota tha createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+) 
+ye krte thee ya react ek root banata tha aur app ko render krta tha . Tho custom mei bhi humne root ko liya aur render kara but waha render react kr raha tha but ye custom hai tho render kud krna padega tho function bana liya customRender. SO yaha hum try kr rahe hai a tag ko render kare uska humne ek ek element bana liya const reactElement isme type dediya props de diye aur children. Ab isko render krna hai aur humne isse iss formaat mei isliye diya hai to see react kya krta hai. Aur ab hum render fuction iske basics pe banege tho har ek element humara issme issi format mei hona chaiye.Tho root ke andar ab ye inject krna padega uske liye customRender(reactElement, mainContainer) ye method use kiya. reactElement inject ho raha mainContainer mei. But ye kud se nhi hoga custom hai. tho func defination krni padegi.
+
+
+🧠 What is this code doing?
+function customRender(reactElement, container) { ... }
+
+1)You're defining a custom render function that:
+2)Takes a reactElement object (which mimics the JSX-like structure).
+3)Creates a real DOM element based on the type (like 'a' for <a>).
+4)Assigns props like href, target, etc., using setAttribute.
+5)Sets inner HTML using the children property.
+6)Appends the DOM element to the container (#root in this case).
+
+
+📦 Sample Input
+const reactElement = {
+  type: 'a',
+  props: {
+    href: 'https://google.com',
+    target: '_blank'
+  },
+  children: 'Click me to visit google'
+}
+
+This object represents the following JSX:
+<a href="https://google.com" target="_blank">
+  Click me to visit google
+</a>
+
+
+🧱 Breakdown of customRender
+
+const domElement = document.createElement(reactElement.type)
+➡️ Creates an actual DOM element like <a>
+
+
+domElement.innerHTML = reactElement.children
+➡️ Sets the text inside the element
+
+
+for (const prop in reactElement.props) {
+  if (prop === 'children') continue;
+  domElement.setAttribute(prop, reactElement.props[prop])
+}
+➡️ Loops through the props and adds them as attributes (href, target)
+
+
+container.appendChild(domElement)
+➡️ Finally appends it to the actual DOM (e.g. inside #root)
+
+
+🎯 Why is this important in the context of React?
+This is React at its core — it:
+
+Takes JSX (or object form).
+
+Converts it to a virtual representation (like your object).
+
+Transforms it into real DOM nodes.
+
+Efficiently updates the DOM when data changes (your code doesn’t do that part — React does).
+
+
+✅ Summary
+Your customRender is a miniature React renderer that shows:
+
+How JSX is just objects.
+
+How these objects are used to create and update the DOM.
+
+Why React is powerful — it builds on this foundation with smart updates, state management, and more.
+
+
+At its heart, React works like this:
+
+JSX is compiled into JavaScript objects (what you're calling reactElement).
+These objects describe what the UI should look like.
+A renderer (like ReactDOM) takes those objects and:
+Creates real DOM elements,
+Applies props (attributes),
+Injects them into the page.
+You're mimicking that with your customRender() function.

@@ -1,0 +1,38 @@
+🧠 What is React Fiber?
+React Fiber is React's new reconciliation engine — the algorithm responsible for:
+
+Rendering components
+
+Comparing (diffing) virtual DOM trees
+
+Figuring out what changed
+
+Updating the real DOM efficiently
+
+It was introduced to replace the old stack-based architecture, which couldn't handle things like interruptions, prioritization, or async rendering well.
+
+
+virtualDom react mei ab use nhi hota. React ab itna jayada virtual dom use nahi ka raha hai internal concept sab change ho gye hai. 
+
+Jo browser hai wo pura dom baar baar banata hai jab refresh kiya tho dubara banega tabhi wo gol icon ghumta hai but react mei jo dom hai bas usko update krte hai jaha hona hota hai.
+
+Lekin suppose some element is dependent on network so  suppose there comes a call to update before updating there comes another call and old one is discard then another one comes before previous one was done. Now it will first change the acc to 1st call then 2nd then 3rd but agar esa kuch hota ki mai waha 3-4 sec ruk jata koi optimize algo laga deta jiise seedhe last wali call excute hoti tho accha rhta.
+
+React ab fibre hee use krti hai virtualdom ko update krne ke liye so virtualdom hai abhi bhi usko update krni wali algo fibre hai jo behind the scene ho rha hai wo fibre kr rahi.
+
+reconciliation -> The algorithm React uses to diff one tree with another (actual browser wala tree and react wala tree jo createroot se aaya)to determine which parts need to be changed.
+reconciliation is the algo behind what is popularly understood as the "virtual DOM"
+---------------------------------------------------------------------------------------------------
+*********IMPORTANT FOR INTERVIEW:--
+
+Diffing of lists is performed using keys. Keys should be "stable, predictable, and unique.
+Ye interview perspective se bhot imp hai kai baar pucha jata hai ki ek array hai usko loop krna hai aur value ko list mei laana hai , button mei ya para mei thoo waha concept aata hai ki keys kyu introduced krni chaiye bina keys ke bhi react warning deke kr dega kaam tho keys isliye use krni chaiye kyuki fibre jo new algo likhi thii
+usme lists ki performance ko enhance krna hai tho har ek iteration pe jo bhi aap Ui, list wagera kr rahe hai uske andar keys ka use krna hee padegaa.
+
+
+We've established that a primary goal of Fiber is to enable React to take advantage of scheduling. Specifically, we need to be able to
+
+pause work and come back to it later.
+assign priority to different types of work.
+reuse previously completed work.
+abort work if it's no longer needed.

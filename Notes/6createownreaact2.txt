@@ -1,0 +1,89 @@
+1) function MyApp(){
+    return (
+        <div>
+            <h1>Custom App | chai</h1>
+        </div>
+    )
+}
+
+// 2) const ReactElement = {
+//     type: 'a',
+//     props: {
+//         href: 'https://google.com',
+//         target: '_blank'
+//     },
+//     children: 'Click me to visit google'
+// }
+
+
+Jo 1) hai usme myApp me jo bhi hai wo end of the day convert 2) mei hota hai. Not exactly like that but waise hee hota hai ek object mei jisse tree ban jae.
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+    <MyApp/>
+)
+
+So if end of the day MyApp is getting converted in ReactElement then why shouldnt we just use ReactElement directly means use object directly
+
+like this-:
+ReactDOM.createRoot(document.getElementById('root')).render(
+    reactElement //object ki tarah call krna padega because object hai not function like MyApp
+)
+
+But ye nahi chalega jabki concept bilkul sahi hai humne object diya jo ki MyApp banata hee humne ek step kam kardiya but ye nhi chalega because ye custom react thaa aur iske liye humne custom render bhi likha thaa So basically ye custom hai. Yaha pe jo .render hai wo react ne likha hai tho yaha koi format hoga jisme wo convert krta hoga MyApp ko tho agar hume directly hee object dena hai tho wo format follow krna padega. Kya parameter kya argument chaiye wo dekhna padega. So basically syntax nhi hai sahi object ki key value ese nhi hoga 
+
+
+const anotherElement = (
+    <a href="https://google.com" target='_blank'>Visit google</a>
+)
+ReactDOM.createRoot(document.getElementById('root')).render(
+    anotherElement
+)
+
+Ye chal jaegaa ye simple jaise banate hai waise banaya isme anotherElement convert hoga jaisa format chaiye ussme khud he.
+
+const anotherUser="Suiii"
+const reactElement = React.createElement(
+    'a', // tag
+    {href: 'https://google.com',target: '_blank' },//props
+    'click me to visit google',//direct text
+    anotherUser
+)
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+    reactElement
+)
+
+React pe kai method hai unme se ek .createElement ye bhi object leta hai but iska syntax pre defined hai 1st parameter jo aaega wo tag hoga 2nd hoga jo props dena hai , 3rd direct text aur baad mei ya last mei evaluatede expression jo simple variables hai wo sab last mei but evaluated expression hone chaiye.So waha pe if else nhi kr sakte kyuki syntax rokta hai if else krna hai tho bhar karo then uss evaluate expression ko yaha use karo. Jaise just upar reactElement mei liya haii
+
+
+
+IMPORTANT-:
+
+import Chai from "./chai"
+
+
+function App() {
+  const username = "chai aur code"
+
+  return (
+    <>
+    <Chai/>
+    <h1>chai aur react {username}</h1>
+    <p>test para</p>
+   </>
+  )
+}
+
+export default App
+
+Here we have made a variable then used it in our jsx and return using {} braces. But what's important here is we have used evaluated expression if we had done this {"chai aur code"} then it would have given error. So evaluated expression hona chaiye return statement mei..
+Example:-
+ return (
+    <>
+    <Chai/>
+    <h1>chai aur react {if(true) username}</h1> //wrong
+    <p>test para</p>
+   </>
+  )
+Ye galat hai esa nhi kr sakte ye evaluated nahi hai expression phele return se bhar isse evaluated krna padega phir use kr sakte hai return mei.Because jo React.createElement hai uska syntax mei last mei variable hote hai jo evaluated hote hai so ye evaluated he hona chaiye ese hee likh dege tho error hoga. So jab ye return convert hoga object mei tab error aega so evaluated hee rakna padta hai.
+

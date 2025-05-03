@@ -1,0 +1,109 @@
+Hooks in React were introduced to solve specific problems with stateful logic and component reuse in a clean, powerful, and flexible way.
+We will look it through using a project 03counter
+
+We will start with basic counter then will see what is the problem in that and why we need hooks which makes react powerfull.
+
+
+
+So look at this code:-
+import './App.css'
+
+function App() {
+  let counter=4
+
+  const addValue=()=>{
+    console.log("Value added",counter)
+    counter=counter+1
+  }
+
+  return (
+    <>
+     <h2>Yho hoo Yoo hooo hooo</h2>
+     <p>Counter Value : {counter}</p>
+     <button onClick={addValue}>Increase {counter}</button>
+     <br />
+     <button>decrease {counter}</button>
+     <p>Footer {counter}</p>
+    </>
+  )
+}
+
+export default App
+
+
+So this is simple code here our UI dooesnt get updated only console get updated because we havent written javascript code to update UI. But problem here is when we will write the code for UI upgrade we have to do it for every element means here counter is in p tag, both button , then footer. So for every element we have write js to update it.If we missed anyone then there will be inconsistency suppose there are 100 elements then there is problem. 
+
+❌ Problems With This Approach
+1) You have to select and update each element (getElementById, innerText).
+2) It's fragile — you forget one element and the UI becomes inconsistent.
+3) Doesn’t scale: Imagine updating 10+ values on a state change — it becomes messy.
+
+
+
+SO this is where react comes in picture ek click karne pe 5 jagah change ho jaega. react khud UI ko dekhta hai. React react krti hai variable ke change hone pe. UI ke andar kab kya change hoga wo react he dekegi.
+
+So react gives you hooks to do this.
+
+In React, hooks are functions that let you "hook into" React state and lifecycle features from function components. They allow you to use features like state management, side effects, and context without writing a class component.
+
+Hooks must follow two rules:
+Only call hooks at the top level (not inside loops or conditions).
+Only call hooks from React function components or custom hooks.
+
+
+Commonly Used React Hooks:
+1)useState
+Lets you add state to a functional component.
+
+2)useEffect
+Lets you perform side effects (e.g., fetching data, DOM manipulation).
+
+3)useContext
+Lets you access React context without using <Context.Consumer>.
+
+4)useRef
+Returns a mutable ref object to access DOM elements or persist values across renders.
+
+5)useMemo
+Memoizes a computed value to optimize performance.
+
+6)useCallback
+Returns a memoized version of a callback function.
+
+How useState works is 
+🔹 Syntax:
+const [stateVariable, setStateFunction] = useState(initialValue);
+
+🔸 Parameters:
+initialValue: The initial value of the state. It can be any data type: number, string, array, object, boolean, etc.
+
+This useState Returns you 2 things
+1) variable basically stateVariable
+2) function which is setStateFunction which is used to update variable
+You can give any name to it according to you.
+
+  const [count, setCount] = useState(0); 
+
+
+🔹 Using Different Data Types
+
+🔸 String:
+const [name, setName] = useState('Vaibhav');//here initial value is string so will return string and a function
+
+
+🔸 Array:
+const [items, setItems] = useState([]);
+setItems([...items, newItem]);
+
+
+🔸 Object:
+const [user, setUser] = useState({ name: '', age: 0 });
+setUser({ ...user, name: 'John' });
+
+
+🔹 When to Use useState
+You want to track UI state, like:
+Form inputs
+Button toggles
+Showing/hiding elements
+Component-specific logic (like tab selection)

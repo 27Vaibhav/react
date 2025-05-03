@@ -1,0 +1,47 @@
+We can use  create-react-app or Vite to create react app.  create-react-app is heavy while vite is lighter
+
+Great! Let’s compare create-react-app (CRA) and Vite, then I’ll help you set up your first project.
+
+⚔️ create-react-app vs Vite
+| Feature                | `create-react-app`                             | `Vite`                                          |
+|------------------------|------------------------------------------------|-------------------------------------------------|
+| **Speed**              | Slower startup & build                         | Extremely fast (uses native ES modules)         |
+| **Bundler**            | Webpack                                        | Uses **esbuild** (dev) and **Rollup** (build)   |
+| **Modern Features**    | Supports modern React features                 | Built for modern JS/React out of the box        |
+| **Customization**      | Limited unless you eject                       | Easy to configure                               |
+| **Learning Curve**     | Beginner-friendly                              | Also beginner-friendly, more modern             |
+| **Community**          | Huge, official tool from React team            | Rapidly growing, widely adopted                 |
+                           Has many libraries in it                         Has mainly 2 main library react and react-dom
+
+✅ Recommendation
+Go with Vite — it's the modern standard, blazing fast, easy to use, and increasingly used in real-world projects.
+
+🚀 Let’s Set Up Your First React App Using Vite
+1. ✅ Install Node.js
+Go to https://nodejs.org/
+
+Download and install the LTS version.
+
+Then check:
+node -v
+npm -v
+
+2. ✅ Create React App using Vite
+Run this in your terminal:
+npm create vite@latest my-react-app --template react
+
+This will:
+Create a folder my-react-app
+Use the React template
+
+Then:
+cd my-react-app
+npm install
+npm run dev
+
+Open http://localhost:5173 — your app is live!
+
+packages.json in this folder will tell you about everything about this app like version,name,type,dependecies,script which you run example->npm run dev
+
+If you do create-react-app for creating it gives you node modules folder from start but vite doesnt give you that for that you have to do npm install then it will come.
+

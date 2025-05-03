@@ -1,0 +1,31 @@
+import { useState } from 'react'
+import './App.css'
+
+function App() {
+  let[counter,setcounter]=useState(15) // counter , setcounter any name can be given to them
+
+  const addValue=()=>{
+    setcounter(counter+1)
+    console.log("Value added",counter)
+  }
+
+  const decreaseValue=()=>{
+    setcounter(counter-1)
+  }
+
+  return (
+    <>
+     <h2>Yho hoo Yoo hooo hooo</h2>
+     <p>Counter Value : {counter}</p>
+     <button onClick={addValue}>Increase {counter}</button>
+     <br />
+     <button onClick={decreaseValue}>decrease {counter}</button>
+     <p>Footer {counter}</p>
+    </>
+  )
+}
+
+export default App
+
+
+So here we are basically importing the hook then setting it up like this let[counter,setcounter]=useState(15) with initial value as 15. setcounter(counter+1) This setcounter function works on counter variable so we increase counter by 1 setcounter behind the scene will look at all the counter and will update them by 1.

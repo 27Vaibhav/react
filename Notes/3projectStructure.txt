@@ -1,0 +1,67 @@
+📁 Project Structure (Vite + React)
+my-react-app/
+├── node_modules/
+├── public/
+│   └── vite.svg
+├── src/
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+├── .gitignore
+├── index.html
+├── package.json
+├── vite.config.js
+└── README.md
+
+
+🔍 Key Files Explained
+✅ src/main.jsx
+
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+)
+
+This is the entry point of your app.
+It renders the <App /> component inside the div#root in index.html.
+
+
+✅ src/App.jsx
+function App() {
+  return (
+    <div>
+      <h1>Hello React + Vite!</h1>
+    </div>
+  )
+}
+
+export default App
+
+This is your main React component.
+You’ll be building all your UI inside here (or its child components).
+
+
+✅ index.html
+<body>
+  <div id="root"></div>
+</body>
+
+This is the main HTML file.
+React mounts the app inside the #root div.
+
+
+✅ vite.config.js
+Configuration file for Vite (you’ll rarely touch it unless you need custom config).
+
+✅ package.json
+Lists all dependencies (react, vite, etc.)
+Contains useful scripts like:
+
+

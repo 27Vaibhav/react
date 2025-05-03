@@ -1,0 +1,50 @@
+🔁 Dynamic Expressions & Conditional Rendering in React
+In JSX, you can use JavaScript expressions inside {} and conditionally render UI based on logic or variables.
+
+✅ 1. Using Expressions
+
+const isLoggedIn = true;
+return <h2>{isLoggedIn ? "Welcome back!" : "Please log in."}</h2>;
+
+->This is evaluated expression.
+
+✅ 2. Using if-else with if outside JSX
+You can’t use if directly inside JSX, but you can write logic before the return:
+
+let message;
+if (isLoggedIn) {
+  message = "Welcome back!";
+} else {
+  message = "Please log in.";
+}
+
+return <h2>{message}</h2>;
+
+✅ 3. Render Conditionally (Short Circuit &&)
+If you only want to render something if a condition is true:
+
+const isAdmin = true;
+return (
+  <>
+    <h1>Dashboard</h1>
+    {isAdmin && <button>Delete User</button>}
+  </>
+);
+
+
+🛠 Task: Try This Example in App.jsx
+function App() {
+  const name = "Suiii";
+  const isLoggedIn = true;
+  const isAdmin = false;
+
+  return (
+    <>
+      <h1>Hello, {name}</h1>
+      <p>{isLoggedIn ? "You are logged in." : "Please log in."}</p>
+      {isAdmin && <button>Admin Panel</button>}
+    </>
+  );
+}
+
+export default App;
